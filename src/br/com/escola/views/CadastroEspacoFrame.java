@@ -22,10 +22,18 @@ public class CadastroEspacoFrame extends JFrame {
 
     public CadastroEspacoFrame() {
         setTitle("Cadastro de Espaços");
-        setSize(750, 450);
+        setSize(750, 480);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
+
+
+        try {
+            ImageIcon icone = new ImageIcon(getClass().getResource("/icone.png"));
+            setIconImage(icone.getImage());
+        } catch (Exception e) {
+            System.out.println("Ícone não encontrado: " + e.getMessage());
+        }
 
         JPanel panelForm = new JPanel(new GridLayout(5, 2, 5, 5));
         panelForm.add(new JLabel("Código:"));
@@ -39,8 +47,16 @@ public class CadastroEspacoFrame extends JFrame {
         panelForm.add(new JLabel(""));
         panelForm.add(btnCadastrar);
 
+
         add(panelForm, BorderLayout.NORTH);
         add(new JScrollPane(tabela), BorderLayout.CENTER);
+
+
+        JLabel lblRodaPe = new JLabel("Desenvolvido por Samuel Facin / SENAI", SwingConstants.CENTER);
+        lblRodaPe.setFont(new Font("SansSerif", Font.ITALIC, 11));
+        lblRodaPe.setForeground(Color.GRAY);
+        lblRodaPe.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        add(lblRodaPe, BorderLayout.SOUTH);
 
         btnCadastrar.addActionListener(e -> cadastrar());
     }

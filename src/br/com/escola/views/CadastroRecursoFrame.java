@@ -24,10 +24,18 @@ public class CadastroRecursoFrame extends JFrame {
 
     public CadastroRecursoFrame() {
         setTitle("Cadastro de Recursos Educacionais");
-        setSize(830, 650);
+        setSize(830, 680);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
+
+
+        try {
+            ImageIcon icone = new ImageIcon(getClass().getResource("/icone.png"));
+            setIconImage(icone.getImage());
+        } catch (Exception e) {
+            System.out.println("Ícone não encontrado: " + e.getMessage());
+        }
 
         JPanel panelForm = new JPanel(new GridLayout(6, 2, 5, 5));
         panelForm.add(new JLabel("Patrimônio:"));
@@ -45,6 +53,13 @@ public class CadastroRecursoFrame extends JFrame {
 
         add(panelForm, BorderLayout.NORTH);
         add(new JScrollPane(tabela), BorderLayout.CENTER);
+
+
+        JLabel lblRodaPe = new JLabel("Desenvolvido por Samuel Facin / SENAI", SwingConstants.CENTER);
+        lblRodaPe.setFont(new Font("SansSerif", Font.ITALIC, 11));
+        lblRodaPe.setForeground(Color.GRAY);
+        lblRodaPe.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        add(lblRodaPe, BorderLayout.SOUTH);
 
         carregarEspacos();
         btnCadastrar.addActionListener(e -> cadastrar());
